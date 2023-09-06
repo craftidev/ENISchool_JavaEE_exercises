@@ -1,0 +1,43 @@
+package perso.id.app.modules.dto;
+
+import java.util.Enumeration;
+
+import javax.servlet.http.HttpServletRequest;
+
+public class UserAgentInfos {
+    private HttpServletRequest request;
+    public UserAgentInfos(HttpServletRequest request) {
+        this.request = request;
+    }
+
+    @Override
+    public String toString() {
+        return getUserAgentInfos();
+    }
+
+    private String getUserAgentInfos() {
+        StringBuffer sb = new StringBuffer();
+        String userAgent = request.getHeader("user-agent");
+
+        sb.append("User-Agent : ").append(userAgent).append("<br>");
+        
+        Enumeration<String> listeEntetes = request.getHeaderNames();
+        while (listeEntetes.hasMoreElements()) 
+        {
+            String entete = listeEntetes.nextElement();
+            sb.append(entete + " : ");
+            Enumeration<String> valeurs = request.getHeaders(entete);
+            while (valeurs.hasMoreElements()) 
+            {
+                sb.append(valeurs.nextElement());
+                if (valeurs.hasMoreElements())
+                {
+                    sb.append(", ");
+                }
+            }
+            sb.append("<br>");
+        }
+
+        return sb.toString();
+    }
+}
