@@ -24,7 +24,37 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Guessing game form
+    // Same for dinamicly generated form
+    document.body.addEventListener("submit", function(e) {
+        e.preventDefault();
+        const formAction = e.target.getAttribute("action");
+        const action = e.target.getAttribute("data-action");
+        const method = e.target.getAttribute("method");
+        const form = document.querySelector(".dynamic-form");
+        const formData = new FormData(form);
+        
+        fetch(`${formAction}?action=${action}`, {
+            method: method,
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: new URLSearchParams(formData).toString()
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(data => {
+                contentDiv.innerHTML = data;
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    });
+
+    // Guessing game form the old not generic way to do the job, very bad!
     document.body.addEventListener("submit", function(e) {
         if (e.target.classList.contains("guess-game-form")) {
             e.preventDefault();
@@ -50,43 +80,3 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
-
-// $(document).ready(function() {
-    // $(".action-trigger").click(function(e) {
-    //     e.preventDefault();
-    //     var action = $(this).data("action");
-
-    //     $.ajax({
-    //         url: "WelcomeServlet",
-    //         data: { action: action },
-    //         type: "GET",
-    //         success: function(resp) {
-    //             $("#contentDiv").html(resp);
-    //         },
-    //         error: function(xhr, status, error) {
-    //             console.error("Error:", status, error);
-    //         }
-    //     });
-    // });
-
-    // Same but for dynamically generated guessing game form
-//     $(document).on("submit", ".ajax-form", function(e) {
-//         e.preventDefault();
-//         var formAction = $(this).data("formAction");
-//         var action = $(this).data("action");
-//         var userGuess = $(this).find('input[name="userGuess"]').val()
-        
-//         $.ajax({
-//             url: formAction,
-//             data: { action: action, userGuess: userGuess },
-//             type: "GET",
-//             success: function(resp) {
-//                 $("#contentDiv").html(resp);
-//             },
-//             error: function(xhr, status, error) {
-//                 console.error("Error:", status, error);
-//             }
-//         });
-//     });
-// });
-

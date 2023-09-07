@@ -76,6 +76,11 @@ menu {
     border: 0.2rem solid var(--color-secondary);
     background-color: var(--color-bg);
 }
+
 hr {
     width: 40vw;
+}
+
+select {
+    overflow: hidden;
 }

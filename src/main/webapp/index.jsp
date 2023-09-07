@@ -1,4 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@
+    page language="java"
+    contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" 
+    isELIgnored="false"
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +16,12 @@
     <script src="bundle.js"></script>
 </head>
 <body>
+
     <h1>&#8801; List of applications / Exercises</h1>
     <menu>
         <a href="#" class="linkExercises action-trigger" data-action="getUserAgentInfos">1. Get user agent infos</a>
         <a href="#" class="linkExercises action-trigger" data-action="playGuessGame">2. Guess between 1 & 10</a>
-        <a href="" class="linkExercises">2.</a>
+        <a href="#" class="linkExercises action-trigger" data-action="playJanken">3. Janken Game</a>
         <a href="" class="linkExercises">2.</a>
         <a href="" class="linkExercises">2.</a>
         <a href="" class="linkExercises">2.</a>
