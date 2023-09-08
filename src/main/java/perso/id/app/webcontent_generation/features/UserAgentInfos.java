@@ -1,4 +1,4 @@
-package perso.id.app.modules.dto;
+package perso.id.app.webcontent_generation.features;
 
 import java.util.Enumeration;
 
@@ -37,7 +37,15 @@ public class UserAgentInfos {
             }
             sb.append("<br>");
         }
-
+        //! Test
+        System.out.println("request in user agent method is: "+request);
+        System.out.println("and what it's sending is: "+sb.toString());
         return sb.toString();
     }
+
+    public void setRequest(HttpServletRequest request) {
+        this.request = request;
+    }
+
 }
+

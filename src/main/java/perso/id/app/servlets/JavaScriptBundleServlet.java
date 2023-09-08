@@ -1,4 +1,4 @@
-package perso.id.app;
+package perso.id.app.servlets;
 
 import java.io.BufferedReader;
 import java.io.IOException;

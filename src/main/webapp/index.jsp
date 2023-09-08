@@ -16,7 +16,6 @@
     <script src="bundle.js"></script>
 </head>
 <body>
-
     <h1>&#8801; List of applications / Exercises</h1>
     <menu>
         <a href="#" class="linkExercises action-trigger" data-action="getUserAgentInfos">1. Get user agent infos</a>
