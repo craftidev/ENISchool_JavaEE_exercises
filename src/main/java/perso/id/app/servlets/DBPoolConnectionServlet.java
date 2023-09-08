@@ -25,9 +25,11 @@ public class DBPoolConnectionServlet extends HttpServlet {
         Connection connection = dataSource.getConnection();
 
         out.print("connection is: " + (connection.isClosed() ? "CLOSED" : "OPENED" ));
+        connection.close();
     } catch (NamingException | SQLException e) {
         response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-        out.println("Error while accessing the DB: " + e);
+        out.println("Error while accessing the DB: ");
+        out.println(e);
     }
 
     }
