@@ -1,4 +1,4 @@
-package perso.id.app.java_webcontent_generations.instance_manager;
+package perso.id.app.webcontent_generation.instance_manager;
 
 import javax.servlet.http.HttpServletRequest;
 

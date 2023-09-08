@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import perso.id.app.java_webcontent_generations.instance_manager.ActionManager;
+import perso.id.app.webcontent_generation.instance_manager.ActionManager;
 
 public class SPAServlet extends HttpServlet {
     private ActionManager actionManager;

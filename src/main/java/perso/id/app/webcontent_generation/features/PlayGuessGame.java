@@ -1,4 +1,4 @@
-package perso.id.app.java_webcontent_generations.features;
+package perso.id.app.webcontent_generation.features;
 
 import java.util.HashMap;
 import java.util.Map;

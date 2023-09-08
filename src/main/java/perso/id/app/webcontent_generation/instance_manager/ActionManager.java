@@ -1,9 +1,9 @@
-package perso.id.app.java_webcontent_generations.instance_manager;
+package perso.id.app.webcontent_generation.instance_manager;
 
 import javax.servlet.http.HttpServletRequest;
 
-import perso.id.app.java_webcontent_generations.features.PlayGuessGame;
-import perso.id.app.java_webcontent_generations.features.UserAgentInfos;
+import perso.id.app.webcontent_generation.features.PlayGuessGame;
+import perso.id.app.webcontent_generation.features.UserAgentInfos;
 
 public class ActionManager implements Action {
     private HttpServletRequest request;
