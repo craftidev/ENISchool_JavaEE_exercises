@@ -41,7 +41,6 @@ menu {
     flex-wrap: wrap;
     flex-basis: content;
 
-    margin-top: 5rem;
     width: 80vw;
     min-width: 220px;
 }

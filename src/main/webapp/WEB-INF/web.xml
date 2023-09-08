@@ -8,17 +8,17 @@
                             http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
 
     <servlet>
-        <servlet-name>WelcomeServlet</servlet-name>
-        <servlet-class>perso.id.app.WelcomeServlet</servlet-class>
+        <servlet-name>SPAServlet</servlet-name>
+        <servlet-class>perso.id.app.servlets.SPAServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>JavaScriptBundleServlet</servlet-name>
-        <servlet-class>perso.id.app.JavaScriptBundleServlet</servlet-class>
+        <servlet-class>perso.id.app.servlets.JavaScriptBundleServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>WelcomeServlet</servlet-name>
-        <url-pattern>/WelcomeServlet</url-pattern>
+        <servlet-name>SPAServlet</servlet-name>
+        <url-pattern>/SPAServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>JavaScriptBundleServlet</servlet-name>
@@ -26,6 +26,11 @@
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>WelcomeServlet</welcome-file>
+        <welcome-file>SPAServlet</welcome-file>
     </welcome-file-list>
+
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/jsp/error.jsp</location>
+    </error-page>
 </web-app>

@@ -1,4 +1,4 @@
-package perso.id.app.modules.bll;
+package perso.id.app.java_webcontent_generations.instance_manager;
 
 import javax.servlet.http.HttpServletRequest;
 

@@ -1,4 +1,4 @@
-package perso.id.app;
+package perso.id.app.servlets;
 
 import java.io.IOException;
 
@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import perso.id.app.modules.bll.ActionManager;
+import perso.id.app.java_webcontent_generations.instance_manager.ActionManager;
 
-public class WelcomeServlet extends HttpServlet {
+public class SPAServlet extends HttpServlet {
     private ActionManager actionManager;
 
     @Override
@@ -20,6 +20,7 @@ public class WelcomeServlet extends HttpServlet {
         }
         else { actionManager.setRequest(req); }
 
+        // TODO handle that null string from JS more gracefully please
         if (action == null || action.equals("null")) {
             req.getRequestDispatcher("/index.jsp").forward(req, resp);
         } else {

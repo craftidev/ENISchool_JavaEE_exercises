@@ -1,9 +1,9 @@
-package perso.id.app.modules.bll;
+package perso.id.app.java_webcontent_generations.instance_manager;
 
 import javax.servlet.http.HttpServletRequest;
 
-import perso.id.app.modules.dto.PlayGuessGame;
-import perso.id.app.modules.dto.UserAgentInfos;
+import perso.id.app.java_webcontent_generations.features.PlayGuessGame;
+import perso.id.app.java_webcontent_generations.features.UserAgentInfos;
 
 public class ActionManager implements Action {
     private HttpServletRequest request;
@@ -22,6 +22,7 @@ public class ActionManager implements Action {
         if (userAgentInfos == null) {
             userAgentInfos = new UserAgentInfos(request);
         }
+        else { userAgentInfos.setRequest(request); }
 
         return userAgentInfos.toString();
     }

@@ -1,4 +1,4 @@
-package perso.id.app.modules.dto;
+package perso.id.app.java_webcontent_generations.features;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -66,11 +66,11 @@ public class PlayGuessGame {
 
     private void getInitContent() {
         StringBuffer HTMLform = new StringBuffer();
-        HTMLform.append("<form class=\"guess-game-form\" method=\"POST\" action=\"WelcomeServlet\" data-action=\"playGuessGame\">");
+        HTMLform.append("<form class=\"dynamic-form\" method=\"POST\" action=\"SPAServlet\" data-action=\"playGuessGame\">");
         HTMLform.append("<input type=\"number\" name=\"userGuess\">");
         HTMLform.append("<input type=\"submit\">");
         HTMLform.append("</form>");
-
+        
         HTMLContent.put("message", "Start of the game.");
         HTMLContent.put("form", HTMLform.toString());
     }

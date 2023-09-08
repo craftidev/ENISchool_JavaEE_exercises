@@ -8,7 +8,6 @@
 
 <%!
     String[] movePool = {"rock", "scissors", "paper"};
-    int score = 0;
     String aiMove;
     String userMove;
 %>
@@ -74,7 +73,7 @@
 
 <p><%= getUserUiMessage() %></p>
 
-<form method="POST" action="WelcomeServlet" data-action="playJanken" class="dynamic-form">
+<form method="POST" action="SPAServlet" data-action="playJanken" class="dynamic-form">
 <select name="userMove" size="3">
     <option value="rock">&#9994;</option>
     <option value="paper">&#9995;</option>
