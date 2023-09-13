@@ -34,6 +34,9 @@ public class SPAServlet extends HttpServlet {
                 case "playJanken":
                     req.getRequestDispatcher("/jsp/janken.jsp").include(req, resp);
                     break;
+                case "crud":
+                    req.getRequestDispatcher("/jsp/crud.jsp").include(req, resp);
+                    break;
                 default:
                     resp.getWriter().write("Error: could not find that content [action: " + action + " request: " + req.toString() + "]");
                     break;

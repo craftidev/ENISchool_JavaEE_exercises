@@ -1,0 +1,10 @@
+.button-select-crud {
+    padding: 0.1rem;
+    background-color: var(--color-accent);
+    cursor: pointer;
+}
+
+/* Hide forms by default */
+.form-appear-on-button {
+    display: none;
+}

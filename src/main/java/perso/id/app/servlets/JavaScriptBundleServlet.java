@@ -19,6 +19,7 @@ public class JavaScriptBundleServlet extends HttpServlet {
         try (PrintWriter out = resp.getWriter()) {
             // JS files to bundle together
             out.println(readFile("js/ajaxActionTrigger.js"));
+            out.println(readFile("js/crudEventListener.js"));
         }
     }
 
