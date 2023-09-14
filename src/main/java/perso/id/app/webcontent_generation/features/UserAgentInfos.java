@@ -37,9 +37,7 @@ public class UserAgentInfos {
             }
             sb.append("<br>");
         }
-        //! Test
-        System.out.println("request in user agent method is: "+request);
-        System.out.println("and what it's sending is: "+sb.toString());
+
         return sb.toString();
     }
 

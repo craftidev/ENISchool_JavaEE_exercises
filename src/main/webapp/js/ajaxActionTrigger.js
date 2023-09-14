@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const formAction = e.target.getAttribute("action");
         const action = e.target.getAttribute("data-action");
         const method = e.target.getAttribute("method");
-        const form = document.querySelector(".dynamic-form");
+        const form = e.target;
         const formData = new FormData(form);
         
         fetch(`${formAction}?action=${action}`, {

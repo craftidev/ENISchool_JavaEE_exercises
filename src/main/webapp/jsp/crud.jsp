@@ -1,35 +1,73 @@
 <%@
-    page language="java"
-    contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" 
-    isELIgnored="false"
+    page language = "java"
+    contentType   = "text/html; charset=UTF-8"
+    pageEncoding  = "UTF-8" 
+    isELIgnored   = "false"
 %>
 
+
 <% // Scriplet
-    String caption = request.getParameter("caption");
+    String caption = "";
+    if (request.getParameter("submit") != null) {
+        caption = request.getParameter("submit");
+    }
 %>
 
 <%! // Class level Java
 %>
 
-<table><caption>${parameter.caption}</caption></table>
-
-<!-- TODO DB display, food, errorcodes etc. -->
 <div class="button-container">
-    <button class="button-select-crud" data-target="div-meals">My Meals</button>
+    <button class="button-select-crud" data-target="div-meals">Add a meal</button>
     <button class="button-select-crud" data-target="div-foods">Food list</button>
 </div>
 
-<div class="form-appear-on-button" id="div-meals">
-    <form method="POST" action="SPAServlet" data-action="crud" class="dynamic-form">
-        <input type="hidden" name="caption" value="List of meals">
-        <input type="submit" value="meal">
+
+<div class="form-appear-on-button" id="div-foods">
+    <form method="POST" action="DBPoolConnectionServlet" data-action="createFood" class="dynamic-form" id="form-foods">
+        <label for="nameInput">Name:</label>
+        <input type="text" name="nameInput" id="nameInput" maxlength="20" size="10">
+        <br>
+        <label for="descriptionInput">Description:</label>
+        <input type="text" name="descriptionInput" id="descriptionInput">
+        <br>
+        <input type="submit" value="New food">
+        <input type="hidden" name="submit" value="foods">
     </form>
 </div>
 
-<div class="form-appear-on-button" id="div-foods">
-    <form method="POST" action="SPAServlet" data-action="crud" class="dynamic-form">
-        <input type="hidden" name="caption" value="List of foods">
-        <input type="submit" value="food">
+<div class="form-appear-on-button" id="div-meals">
+    <form method="POST" action="DBPoolConnectionServlet" data-action="createMeal" class="dynamic-form" id="form-meals">
+        <label for="dateInput">Select a Date:</label>
+        <input type="date" name="dateInput" id="dateInput">
+        <br>
+        <label for="foodSelect">Select the composition of the meal:</label>
+        <select type="select" id="foodSelect" name="foodSelect">
+            <!-- TODO generated -->
+            <option value="1">one</option>
+            <option value="2">two</option>
+        </select>
+        <br>qsdf<br>
+        <input type="submit">
+        <input type="hidden" name="submit" value="meals">
     </form>
 </div>
+
+<table class="dynamic-table">
+    <caption><%= caption %></caption>
+    <tr>
+        <th>Action</th>
+        <th class="even-opacity">Date</th>
+        <th>Composition</th>
+    <tr>
+        <td>O X</td>
+        <td class="even-opacity">test3</td>
+        <td>this1, that15, some stuff here, and others</td>
+    </tr>
+    <tr>
+        <td>O X</td>
+        <td class="even-opacity">test5</td>
+        <td>lorem ipsum lorem lorem qsdfiel mq, joeizfjjks, iejf qmlkej</td>
+    </tr>
+</table>
+${dynamicTableContent}
+<!-- TODO DB display, food, errorcodes etc. -->

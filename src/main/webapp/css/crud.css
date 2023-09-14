@@ -1,5 +1,5 @@
 .button-select-crud {
-    padding: 0.1rem;
+    padding: 0.2rem;
     background-color: var(--color-accent);
     cursor: pointer;
 }
@@ -7,4 +7,25 @@
 /* Hide forms by default */
 .form-appear-on-button {
     display: none;
+}
+
+table {
+    border: 0.1rem solid black;
+}
+
+td, th {
+    padding: 0.2rem;
+}
+
+tr:nth-child(odd) {
+    background-color: var(--color-primary);
+}
+tr:nth-child(even) {
+    background-color: var(--color-secondary);
+}
+.even-opacity {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+th {
+    background-color: var(--color-bg);
 }

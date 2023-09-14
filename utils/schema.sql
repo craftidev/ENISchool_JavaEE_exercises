@@ -11,7 +11,7 @@ CREATE TABLE Meals(
 );
 
 CREATE TABLE Foods(
-    Id          INT          PRIMARY KEY AUTO_INCREMENT,
-    name        TEXT NOT NULL,
-    description TEXT     NULL
+    Id          INT                 PRIMARY KEY AUTO_INCREMENT,
+    name        VARCHAR(20) NOT NULL,
+    description TEXT            NULL
 );

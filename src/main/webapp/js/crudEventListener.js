@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const targetDiv = document.getElementById(targetId);
             
             divs.forEach(function(div) {
-                if (!div === targetDiv) {
+                if (!(div === targetDiv)) {
                     div.style.display = "none";
                 }
             });
