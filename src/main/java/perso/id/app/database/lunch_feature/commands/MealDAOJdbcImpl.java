@@ -3,6 +3,9 @@ package perso.id.app.database.lunch_feature.commands;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import perso.id.app.database.lunch_feature.errors.CommandException;
 import perso.id.app.database.lunch_feature.errors.ErrorCodes;
@@ -51,12 +54,51 @@ public class MealDAOJdbcImpl implements MealDAO {
     }
 
     @Override
-    public void selectById(int id) throws CommandException {
-        
+    public List<Meal> selectAll() throws CommandException {
+        List<Meal> result = new ArrayList<>();
+
+        try (Connection connection = ConnectionProviderJdbcMariaDB.getConnection();) {
+            PreparedStatement query = connection.prepareStatement(SELECT);
+
+            try (ResultSet resultSet = query.executeQuery()) {
+                while (resultSet.next()) {
+                    Meal meal = new Meal();
+
+                    meal.setId(resultSet.getInt("id"));
+                    Timestamp sqlTimestamp = resultSet.getTimestamp("date");
+                    meal.setDate(sqlTimestamp.toLocalDateTime());
+                    meal.setFoodCompositionId(strToListIntegers(resultSet.getString("foodCompositionIdList")));
+
+                    result.add(meal);
+                }
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        return result;
     }
 
     @Override
     public void update(Meal meal) throws CommandException {
         
+    }
+
+    private List<Integer> strToListIntegers(String string) {
+        List<Integer> result = new ArrayList<>();
+        
+        String[] numbers = string.split(",");
+        for (String number : numbers) {
+            try {
+                Integer converted = Integer.parseInt(number.trim()); // Trim to remove leading/trailing spaces
+                result.add(converted);
+            } catch (NumberFormatException e) {
+                // Handle invalid numbers if needed
+                System.err.println("Invalid number: " + number);
+            }
+        }
+
+        return result;
     }
 }

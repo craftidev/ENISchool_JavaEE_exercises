@@ -86,4 +86,4 @@ Form action sent: ${param.action}<br>
 Servlet action response: ${dynamicTableContent}<br>
 ID: ${param.elementId}<br>
 
-<!-- TODO DB display, food, errorcodes etc. -->
+<!-- TODO errorcodes -->

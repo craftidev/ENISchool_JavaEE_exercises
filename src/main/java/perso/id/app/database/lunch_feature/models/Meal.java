@@ -8,18 +8,30 @@ public class Meal {
     private LocalDateTime date;
     private List<Integer> foodCompositionId;
 
-    public  Meal() {
+    public Meal() {
         this(null, null, null);
     }
 
-    public  Meal(LocalDateTime date, List<Integer> foodCompositionId) {
+    public Meal(LocalDateTime date, List<Integer> foodCompositionId) {
         this(null, date, foodCompositionId);
     }
 
-    public  Meal(Integer id, LocalDateTime date, List<Integer> foodCompositionId) {
+    public Meal(Integer id, LocalDateTime date, List<Integer> foodCompositionId) {
         setId(id);
         setDate(date);
         setFoodCompositionId(foodCompositionId);
+    }
+
+    @Override
+    public String toString(){
+        String result = new String();
+
+        result += "<tr><td>actions</td>";
+        result += "<td>"+ this.date  +"</td>";
+        result += "<td>"+ this.foodCompositionId  +"</td>";
+        result += "<tr>";
+
+        return result;
     }
 
     public Integer getId() {

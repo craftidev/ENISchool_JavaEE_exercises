@@ -1,32 +1,34 @@
 package perso.id.app.servlets;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import perso.id.app.database.lunch_feature.logic.MealManager;
 import perso.id.app.webcontent_generation.instance_manager.ActionManager;
 
 public class DBPoolConnectionServlet extends HttpServlet {
-    private ActionManager actionManager;
+    private MealManager mealManager;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         String action = request.getParameter("action");
         String dynamicTableContent = new String();
-        if (actionManager == null) {
+        if (mealManager == null) {
             // TODO right manager
-            actionManager = new ActionManager(request);
+            mealManager = new MealManager();
             dynamicTableContent = "first gen Meal/Food<br>";
         }
-        else { actionManager.setRequest(request); }
 
         switch(action) {
             case "createMeal":
                 dynamicTableContent += "insert m & regen Meal";
+                mealManager.add(request.getParameter("dateInput"), request.getParameter("foodList"));
                 break;
             case "createFood":
                 dynamicTableContent += "insert f & regen Food";
