@@ -13,29 +13,31 @@ public class SPAServlet extends HttpServlet {
     private ActionManager actionManager;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String action = req.getParameter("action");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
         if (actionManager == null) {
-            actionManager = new ActionManager(req);
+            actionManager = new ActionManager(request);
         }
-        else { actionManager.setRequest(req); }
-
+        else { actionManager.setRequest(request); }
         // TODO handle that null string from JS more gracefully please
         if (action == null || action.equals("null")) {
-            req.getRequestDispatcher("/index.jsp").forward(req, resp);
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
         } else {
             switch (action) {
                 case "getUserAgentInfos":
-                    resp.getWriter().write(actionManager.getUserAgentInfos());
+                    response.getWriter().write(actionManager.getUserAgentInfos());
                     break;
                 case "playGuessGame":
-                    resp.getWriter().write(actionManager.getPlayGuessGame());
+                    response.getWriter().write(actionManager.getPlayGuessGame());
                     break;
                 case "playJanken":
-                    req.getRequestDispatcher("/jsp/janken.jsp").include(req, resp);
+                    request.getRequestDispatcher("/jsp/janken.jsp").include(request, response);
+                    break;
+                case "crud":
+                    request.getRequestDispatcher("/jsp/crud.jsp").include(request, response);
                     break;
                 default:
-                    resp.getWriter().write("Error: could not find that content [action: " + action + " request: " + req.toString() + "]");
+                    response.getWriter().write("Error: could not find that content [action: " + action + " request: " + request.toString() + "]");
                     break;
             }
         }

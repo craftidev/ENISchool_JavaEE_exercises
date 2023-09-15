@@ -1,42 +1,62 @@
 package perso.id.app.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
+
+import perso.id.app.database.lunch_feature.logic.MealManager;
+import perso.id.app.webcontent_generation.instance_manager.ActionManager;
 
 public class DBPoolConnectionServlet extends HttpServlet {
+    private MealManager mealManager;
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter out = response.getWriter();
-    try {
-        Context context = new InitialContext();
-        DataSource dataSource = (DataSource) context.lookup("java:comp/env/mariadb/jdbc/pool_connection");
-        Connection connection = dataSource.getConnection();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+        String action = request.getParameter("action");
+        String dynamicTableContent = new String();
+        if (mealManager == null) {
+            // TODO right manager
+            mealManager = new MealManager();
+            dynamicTableContent = "first gen Meal/Food<br>";
+        }
 
-        out.print("connection is: " + (connection.isClosed() ? "CLOSED" : "OPENED" ));
-        connection.close();
-    } catch (NamingException | SQLException e) {
-        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-        out.println("Error while accessing the DB: ");
-        out.println(e);
-    }
-
+        switch(action) {
+            case "createMeal":
+                dynamicTableContent += "insert m & regen Meal";
+                mealManager.add(request.getParameter("dateInput"), request.getParameter("foodList"));
+                break;
+            case "createFood":
+                dynamicTableContent += "insert f & regen Food";
+                break;
+            case "editMeal":
+                dynamicTableContent += "update m & regen Meal";
+                break;
+            case "editFood":
+                dynamicTableContent += "update f & regen Food";
+                break;
+            case "deleteMeal":
+                dynamicTableContent += "delete m & regen Meal";
+                break;
+            case "deleteFood":
+                dynamicTableContent += "delete f & regen Food";
+                break;
+            default:
+                dynamicTableContent += "gen Meals & gen Foods";
+                break;
+        }
+        request.setAttribute("dynamicTableContent", dynamicTableContent);
+        request.getRequestDispatcher("/jsp/crud.jsp").include(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+        doGet(request, response);
     }
     
 }

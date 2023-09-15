@@ -8,7 +8,6 @@
         url = "jdbc:mariadb://mariadb:3306/javaee"
         username = "user"
         password = "password"
-        schemaPath = "/var/lib/mysql/schema.sql"
 
         maxTotal = "100"
         maxIdle = "30"

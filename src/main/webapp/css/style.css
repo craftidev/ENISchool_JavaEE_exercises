@@ -1,9 +1,9 @@
 :root {
-    --color-bg: #04262F;
-    --color-primary: #3B5860;
-    --color-secondary: #48466C;
-    --color-accent: #13BDEC;
-    --color-text: #F1FBFE;
+    --color-bg: rgb(4, 38, 47);
+    --color-primary: rgb(59, 88, 96);
+    --color-secondary: rgb(72, 70, 108);
+    --color-accent: rgb(19, 189, 236);
+    --color-text: rgb(241, 251, 254);
 
     background-color: var(--color-bg);
     color: var(--color-text)
