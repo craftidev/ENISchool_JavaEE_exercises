@@ -11,6 +11,12 @@
     if (request.getParameter("submit") != null) {
         caption = request.getParameter("submit");
     }
+    else if (request.getParameter("editAction") != null) {
+        caption = request.getParameter("editAction");
+    }
+    else if (request.getParameter("deleteAction") != null) {
+        caption = request.getParameter("deleteAction");
+    }
 %>
 
 <%! // Class level Java
@@ -53,21 +59,31 @@
 </div>
 
 <table class="dynamic-table">
-    <caption><%= caption %></caption>
+    <caption>Caption</caption>
     <tr>
         <th>Action</th>
         <th class="even-opacity">Date</th>
         <th>Composition</th>
     <tr>
-        <td>O X</td>
+        <td>
+            <Button class="button-POST-editdelete" servlet-action="deleteMeal" element-id="1">x</Button>
+            <Button class="button-POST-editdelete" servlet-action="editMeal" element-id="1">edit</Button>
+        </td>
         <td class="even-opacity">test3</td>
         <td>this1, that15, some stuff here, and others</td>
     </tr>
     <tr>
-        <td>O X</td>
+        <td>
+            <Button class="button-POST-editdelete" servlet-action="deleteMeal" element-id="2">x</Button>
+            <Button class="button-POST-editdelete" servlet-action="editMeal" element-id="2">edit</Button>
+        </td>
         <td class="even-opacity">test5</td>
         <td>lorem ipsum lorem lorem qsdfiel mq, joeizfjjks, iejf qmlkej</td>
     </tr>
 </table>
-${dynamicTableContent}
+
+Form action sent: ${param.action}<br>
+Servlet action response: ${dynamicTableContent}<br>
+ID: ${param.elementId}<br>
+
 <!-- TODO DB display, food, errorcodes etc. -->

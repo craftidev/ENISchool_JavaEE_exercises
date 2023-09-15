@@ -12,5 +12,25 @@ document.addEventListener("DOMContentLoaded", function() {
             });
             targetDiv.style.display = targetDiv.style.display === "block" ? "none" : "block";
         }
+
+        if (event.target.classList.contains("button-POST-editdelete")) {
+            const servletAction = event.target.getAttribute("servlet-action");
+            const elementId = event.target.getAttribute("element-id");
+
+            fetch(`DBPoolConnectionServlet?action=${servletAction}&elementId=${elementId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        console.error(`HTTP error! Status: ${response.status}`);
+                    }
+
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById("contentDiv").innerHTML = data;
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+        }
     });
 });
