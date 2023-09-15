@@ -12,8 +12,8 @@ import perso.id.app.database.lunch_feature.models.Food;
 
 public class FoodDAOJdbcImpl implements FoodDAO {
     private static final String INSERT = "INSERT INTO Foods(name, description) VALUES(?, ?);";
-    private static final String UPDATE = "UPDATE Foodss SET(name = ?, description = ?) WHERE(Id = ?);";
-    private static final String DELETE = "DELETE FROM Foods WHERE (Id=?);";
+    // private static final String UPDATE = "UPDATE Foodss SET(name = ?, description = ?) WHERE(Id = ?);";
+    // private static final String DELETE = "DELETE FROM Foods WHERE (Id=?);";
     private static final String SELECT = "SELECT id, name, description FROM Foods";
 
     @Override

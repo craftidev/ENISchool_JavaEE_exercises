@@ -13,8 +13,8 @@ import perso.id.app.database.lunch_feature.models.Meal;
 
 public class MealDAOJdbcImpl implements MealDAO {
     private static final String INSERT = "INSERT INTO Meals(date, foodCompositionIdList) VALUES(?, ?);";
-    private static final String UPDATE = "UPDATE Meals SET(date = ?, foodCompositionIdList = ?) WHERE(ID = ?);";
-    private static final String DELETE = "DELETE FROM Meals WHERE (id=?);";
+    // private static final String UPDATE = "UPDATE Meals SET(date = ?, foodCompositionIdList = ?) WHERE(ID = ?);";
+    // private static final String DELETE = "DELETE FROM Meals WHERE (id=?);";
     private static final String SELECT = "SELECT id, date, foodCompositionIdList FROM Meals";
 
     @Override

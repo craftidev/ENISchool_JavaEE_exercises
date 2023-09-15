@@ -1,15 +1,15 @@
 package perso.id.app.servlets;
 
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import perso.id.app.database.lunch_feature.errors.CommandException;
+import perso.id.app.database.lunch_feature.errors.LogicException;
 import perso.id.app.database.lunch_feature.logic.MealManager;
-import perso.id.app.webcontent_generation.instance_manager.ActionManager;
 
 public class DBPoolConnectionServlet extends HttpServlet {
     private MealManager mealManager;
@@ -28,7 +28,15 @@ public class DBPoolConnectionServlet extends HttpServlet {
         switch(action) {
             case "createMeal":
                 dynamicTableContent += "insert m & regen Meal";
-                mealManager.add(request.getParameter("dateInput"), request.getParameter("foodList"));
+                try {
+                    mealManager.add(request.getParameter("dateInput"), request.getParameter("foodList"));
+                } catch (LogicException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (CommandException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 break;
             case "createFood":
                 dynamicTableContent += "insert f & regen Food";
